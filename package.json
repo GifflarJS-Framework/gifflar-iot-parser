@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "gifflar": "file:../gifflar",
+    "gifflar": "git+https://gitlab.com/gifflarsuite/gifflar",
     "mocha": "^8.0.1"
   }
 }
