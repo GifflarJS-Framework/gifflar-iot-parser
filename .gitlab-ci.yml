@@ -1,0 +1,11 @@
+default:
+  image: node:10.15.3
+
+stages:
+  - test
+
+quality:
+  stage: test
+  script:
+    - npm install
+    - npm test
