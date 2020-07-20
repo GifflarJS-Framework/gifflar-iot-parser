@@ -1,0 +1,17 @@
+{
+  "name": "gifflar-iot-parser",
+  "version": "1.0.0",
+  "description": "The IoT JSON parser for Gifflar framework.",
+  "main": "./index.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/lif-uesc/gifflar.git"
+  },
+  "keywords": [],
+  "author": "Levy Santiago",
+  "license": "ISC",
+  "dependencies": {}
+}
