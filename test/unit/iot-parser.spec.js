@@ -8,7 +8,7 @@ const expectedCode = fs.readFileSync(writing_path + "contract-1.txt", {
   encoding: "utf8",
 });
 
-describe("IoT Json Parser", () => {
+describe.skip("IoT Json Parser", () => {
   //Entry example
   const sensors = [
     {
