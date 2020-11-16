@@ -21,7 +21,7 @@
 function createIoTParser() {
   let definitions = [];
   //const sensorMeasures = [];
-  const deviceMeasures = [];
+  let deviceMeasures = [];
 
   function _capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -123,14 +123,14 @@ function createIoTParser() {
   }
 
   function _setupController(contract, controlledName) {
-    contract.createVariable("address[]", "contracts", "public");
+    contract.createVariable(controlledName + "[]", "contracts", "public");
     contract.createVariable("uint", "counter", "private", false, 0);
 
     contract
       .createFunction("createContract", "public")
       .setInput("address", "_owner")
       .setVariable(
-        "address",
+        controlledName,
         "newContract",
         "new " + controlledName + "(_owner)"
       )
@@ -140,7 +140,7 @@ function createIoTParser() {
     contract
       .createFunction("getLastContract", "public")
       .setOutput("lastContract")
-      .setVariable("address", "lastContract", "address(0)")
+      .setVariable(controlledName, "lastContract", "")
       .beginIf("counter > 0")
       .setAssignment("lastContract", "contracts[counter - 1]")
       .endIf()
@@ -167,6 +167,7 @@ function createIoTParser() {
     let gContractController = null;
 
     sensors.map((sensor) => {
+      deviceMeasures = [];
       // Creating the Sensor Contract
       gContract = manager.newContract(sensor.data.name);
       _setupVariables(gContract, sensor.data.values);
