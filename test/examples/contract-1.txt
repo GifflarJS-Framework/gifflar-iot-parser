@@ -75,19 +75,19 @@ minHumidity = _minHumidity;
 
 contract DHT11Controller{
 //VARIABLES
-address[] public contracts;
+DHT11[] public contracts;
 uint private counter;
 
 
 //FUNCTIONS
 function createContract(address _owner) public{
-address newContract = new DHT11(_owner);
+DHT11 newContract = new DHT11(_owner);
 contracts.push(newContract);
 counter = counter + 1;
 }
 
-function getLastContract() public returns (address) {
-address lastContract = address(0);
+function getLastContract() public returns (DHT11) {
+DHT11 lastContract;
 if(counter > 0){
 lastContract = contracts[counter - 1];
 }

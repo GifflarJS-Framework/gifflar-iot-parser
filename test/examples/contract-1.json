@@ -215,7 +215,7 @@
     "contract": {
       "variables": [
         {
-          "type": "address[]",
+          "type": "DHT11[]",
           "name": "contracts",
           "scope": "public",
           "value": "",
@@ -244,7 +244,7 @@
           "content": [
             {
               "statement": "variable",
-              "type": "address",
+              "type": "DHT11",
               "name": "newContract",
               "value": "new DHT11(_owner)"
             },
@@ -270,9 +270,9 @@
           "content": [
             {
               "statement": "variable",
-              "type": "address",
+              "type": "DHT11",
               "name": "lastContract",
-              "value": "address(0)"
+              "value": ""
             },
             {
               "statement": "if",
