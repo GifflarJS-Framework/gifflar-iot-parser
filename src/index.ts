@@ -1,4 +1,4 @@
-import IotParser from "./src/iot-parser";
+import IotParser from "./iot-parser";
 
 const GifflarIotParser = {
   createIoTParser: () => {
