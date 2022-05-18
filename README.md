@@ -2,4 +2,4 @@
 
 Um parser de JSONs de sensores IoT para JSONs do Gifflar.
 
-[![pipeline status](https://gitlab.com/gifflarsuite/gifflar-iot-parser/badges/master/pipeline.svg)](https://gitlab.com/gifflarsuite/gifflar-iot-parser/-/commits/master)
+[![Node.js CI](https://github.com/GifflarJS-Framework/gifflar-iot-parser/actions/workflows/tests.yml/badge.svg)](https://github.com/GifflarJS-Framework/gifflar-iot-parser/actions/workflows/tests.yml)
