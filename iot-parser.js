@@ -93,14 +93,6 @@ function createIoTParser() {
     });
   }
 
-  function _setupGetValues(contract, variables) {
-    const getValues = contract.createFunction("getValues", "public");
-
-    variables.map((v) => {
-      getValues.setOutput(v.idv);
-    });
-  }
-
   function _setupSetMeasures(contract) {
     deviceMeasures.map((v) => {
       const setMeasure = contract

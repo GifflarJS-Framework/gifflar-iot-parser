@@ -4,53 +4,75 @@
     "contract": {
       "variables": [
         {
+          "statement": "global_variable",
           "type": "address",
           "name": "manager",
           "scope": "public",
-          "value": "",
-          "setMethod": true
+          "value": ""
         },
         {
+          "statement": "global_variable",
           "type": "uint",
           "name": "temperature",
           "scope": "public",
-          "value": "",
-          "setMethod": false
+          "value": ""
         },
         {
+          "statement": "global_variable",
           "type": "uint",
           "name": "maxTemperature",
           "scope": "public",
-          "value": "",
-          "setMethod": true
+          "value": ""
         },
         {
+          "statement": "global_variable",
           "type": "uint",
           "name": "minTemperature",
           "scope": "public",
-          "value": "",
-          "setMethod": true
+          "value": ""
         },
         {
+          "statement": "global_variable",
           "type": "uint",
           "name": "humidity",
           "scope": "public",
-          "value": "",
-          "setMethod": false
+          "value": ""
         },
         {
+          "statement": "global_variable",
           "type": "uint",
           "name": "maxHumidity",
           "scope": "public",
-          "value": "",
-          "setMethod": true
+          "value": ""
         },
         {
+          "statement": "global_variable",
           "type": "uint",
           "name": "minHumidity",
           "scope": "public",
-          "value": "",
-          "setMethod": true
+          "value": ""
+        }
+      ],
+      "events": [
+        {
+          "statement": "event",
+          "name": "temperatureOverflow",
+          "inputs": [{ "name": "temperature", "type": "uint" }]
+        },
+        {
+          "statement": "event",
+          "name": "temperatureUnderflow",
+          "inputs": [{ "name": "temperature", "type": "uint" }]
+        },
+        {
+          "statement": "event",
+          "name": "humidityOverflow",
+          "inputs": [{ "name": "humidity", "type": "uint" }]
+        },
+        {
+          "statement": "event",
+          "name": "humidityUnderflow",
+          "inputs": [{ "name": "humidity", "type": "uint" }]
         }
       ],
       "functions": [
@@ -65,31 +87,107 @@
             }
           ],
           "outputs": [],
+          "modifiers": [],
           "content": [
             {
               "statement": "assignment",
               "variable": "manager",
-              "value": "_owner"
+              "value": {
+                "statement": "expression",
+                "value": "_owner"
+              }
             },
             {
               "statement": "assignment",
               "variable": "maxTemperature",
-              "value": "10"
+              "value": {
+                "statement": "expression",
+                "value": "10"
+              }
             },
             {
               "statement": "assignment",
               "variable": "minTemperature",
-              "value": "0"
+              "value": {
+                "statement": "expression",
+                "value": "0"
+              }
             },
             {
               "statement": "assignment",
               "variable": "maxHumidity",
-              "value": "10"
+              "value": {
+                "statement": "expression",
+                "value": "10"
+              }
             },
             {
               "statement": "assignment",
               "variable": "minHumidity",
-              "value": "0"
+              "value": {
+                "statement": "expression",
+                "value": "0"
+              }
+            }
+          ]
+        },
+        {
+          "name": "setMaxTemperature",
+          "scope": "public",
+          "isConstructor": false,
+          "inputs": [{ "name": "_maxTemperature", "type": "uint" }],
+          "outputs": [],
+          "modifiers": [],
+          "content": [
+            {
+              "statement": "assignment",
+              "variable": "maxTemperature",
+              "value": { "statement": "expression", "value": "_maxTemperature" }
+            }
+          ]
+        },
+        {
+          "name": "setMinTemperature",
+          "scope": "public",
+          "isConstructor": false,
+          "inputs": [{ "name": "_minTemperature", "type": "uint" }],
+          "outputs": [],
+          "modifiers": [],
+          "content": [
+            {
+              "statement": "assignment",
+              "variable": "minTemperature",
+              "value": { "statement": "expression", "value": "_minTemperature" }
+            }
+          ]
+        },
+        {
+          "name": "setMaxHumidity",
+          "scope": "public",
+          "isConstructor": false,
+          "inputs": [{ "name": "_maxHumidity", "type": "uint" }],
+          "outputs": [],
+          "modifiers": [],
+          "content": [
+            {
+              "statement": "assignment",
+              "variable": "maxHumidity",
+              "value": { "statement": "expression", "value": "_maxHumidity" }
+            }
+          ]
+        },
+        {
+          "name": "setMinHumidity",
+          "scope": "public",
+          "isConstructor": false,
+          "inputs": [{ "name": "_minHumidity", "type": "uint" }],
+          "outputs": [],
+          "modifiers": [],
+          "content": [
+            {
+              "statement": "assignment",
+              "variable": "minHumidity",
+              "value": { "statement": "expression", "value": "_minHumidity" }
             }
           ]
         },
@@ -99,6 +197,7 @@
           "isConstructor": false,
           "inputs": [],
           "outputs": ["temperature", "humidity"],
+          "modifiers": [],
           "content": []
         },
         {
@@ -112,11 +211,15 @@
             }
           ],
           "outputs": [],
+          "modifiers": [],
           "content": [
             {
               "statement": "assignment",
               "variable": "temperature",
-              "value": "_temperature"
+              "value": {
+                "statement": "expression",
+                "value": "_temperature"
+              }
             },
             {
               "statement": "if",
@@ -124,14 +227,9 @@
               "condition": "temperature <= maxTemperature",
               "content": [
                 {
-                  "statement": "callevent",
+                  "statement": "event_call",
                   "name": "temperatureOverflow",
-                  "inputs": [
-                    {
-                      "name": "temperature",
-                      "type": "uint"
-                    }
-                  ]
+                  "variables": ["temperature"]
                 }
               ]
             },
@@ -141,14 +239,9 @@
               "condition": "temperature >= minTemperature",
               "content": [
                 {
-                  "statement": "callevent",
+                  "statement": "event_call",
                   "name": "temperatureUnderflow",
-                  "inputs": [
-                    {
-                      "name": "temperature",
-                      "type": "uint"
-                    }
-                  ]
+                  "variables": ["temperature"]
                 }
               ]
             }
@@ -165,11 +258,15 @@
             }
           ],
           "outputs": [],
+          "modifiers": [],
           "content": [
             {
               "statement": "assignment",
               "variable": "humidity",
-              "value": "_humidity"
+              "value": {
+                "statement": "expression",
+                "value": "_humidity"
+              }
             },
             {
               "statement": "if",
@@ -177,14 +274,9 @@
               "condition": "humidity <= maxHumidity",
               "content": [
                 {
-                  "statement": "callevent",
+                  "statement": "event_call",
                   "name": "humidityOverflow",
-                  "inputs": [
-                    {
-                      "name": "humidity",
-                      "type": "uint"
-                    }
-                  ]
+                  "variables": ["humidity"]
                 }
               ]
             },
@@ -194,14 +286,9 @@
               "condition": "humidity >= minHumidity",
               "content": [
                 {
-                  "statement": "callevent",
+                  "statement": "event_call",
                   "name": "humidityUnderflow",
-                  "inputs": [
-                    {
-                      "name": "humidity",
-                      "type": "uint"
-                    }
-                  ]
+                  "variables": ["humidity"]
                 }
               ]
             }
@@ -215,20 +302,21 @@
     "contract": {
       "variables": [
         {
+          "statement": "global_variable",
           "type": "DHT11[]",
           "name": "contracts",
           "scope": "public",
-          "value": "",
-          "setMethod": false
+          "value": ""
         },
         {
+          "statement": "global_variable",
           "type": "uint",
           "name": "counter",
           "scope": "private",
-          "value": 0,
-          "setMethod": false
+          "value": "0"
         }
       ],
+      "events": [],
       "functions": [
         {
           "name": "createContract",
@@ -241,6 +329,7 @@
             }
           ],
           "outputs": [],
+          "modifiers": [],
           "content": [
             {
               "statement": "variable",
@@ -249,7 +338,7 @@
               "value": "new DHT11(_owner)"
             },
             {
-              "statement": "callmethod",
+              "statement": "method_call",
               "variable": "contracts",
               "method": "push",
               "value": "newContract"
@@ -257,7 +346,10 @@
             {
               "statement": "assignment",
               "variable": "counter",
-              "value": "counter + 1"
+              "value": {
+                "statement": "expression",
+                "value": "counter + 1"
+              }
             }
           ]
         },
@@ -267,6 +359,7 @@
           "isConstructor": false,
           "inputs": [],
           "outputs": ["lastContract"],
+          "modifiers": [],
           "content": [
             {
               "statement": "variable",
@@ -282,7 +375,10 @@
                 {
                   "statement": "assignment",
                   "variable": "lastContract",
-                  "value": "contracts[counter - 1]"
+                  "value": {
+                    "statement": "expression",
+                    "value": "contracts[counter - 1]"
+                  }
                 }
               ]
             },
@@ -294,7 +390,10 @@
                 {
                   "statement": "assignment",
                   "variable": "lastContract",
-                  "value": "contracts[0]"
+                  "value": {
+                    "statement": "expression",
+                    "value": "contracts[0]"
+                  }
                 }
               ]
             }
